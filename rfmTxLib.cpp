@@ -103,13 +103,13 @@ bool rfm_send(const byte *data, const byte size, const byte group, const byte no
   // rf_power:  0 - 31 = -18 dBm (min value) - +13 dBm (max value). RFM12B equivalent: 25 (+7 dBm)  
   // timeout:  set to zero to inhibit channel occupancy check.
   
-	if (rf_freq == RFM_868MHZ)
+	if (rf_freq == RF69_868MHZ)
   {
 		writeReg(0x07, 0xD9); // RegFrfMsb: Frf = Rf Freq / 61.03515625 Hz = 0xD90000 = 868.00 MHz as used by JeeLib  
 		writeReg(0x08, 0x00); // RegFrfMid
 		writeReg(0x09, 0x00); // RegFrfLsb
 	}
-  else if (rf_freq == RFM_915MHZ) // JeeLib uses 912.00 MHz
+  else if (rf_freq == RF69_915MHZ) // JeeLib uses 912.00 MHz
   {	
 		writeReg(0x07, 0xE4); // RegFrfMsb: Frf = Rf Freq / 61.03515625 Hz = 0xE40000 = 912.00 MHz as used by JeeLib 
 		writeReg(0x08, 0x00); // RegFrfMid
@@ -291,12 +291,12 @@ bool rfm_send(const byte *data, const byte size, const byte group, const byte no
     pwr = 8;
   pwr = (25 - pwr) / 2.4; // scale as per RFM69
   
-  if (rf_freq == RFM_868MHZ)
+  if (rf_freq == RF69_868MHZ)
   {	  
     rfm_write(0x80E7); // EL (ena dreg), EF (ena RX FIFO), 868 MHz, 12.0pF 
 	  rfm_write(0xA640); // 868.00 MHz as used JeeLib 
 	}
-  else if (rf_freq == RFM_915MHZ) // JeeLib uses 912.00 MHz
+  else if (rf_freq == RF69_915MHZ) // JeeLib uses 912.00 MHz
   {	
 	  rfm_write(0x80F7); // EL (ena dreg), EF (ena RX FIFO), 915 MHz, 12.0pF 
 	  rfm_write(0xA640); // 912.00 MHz as used JeeLib 	
