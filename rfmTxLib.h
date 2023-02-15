@@ -11,7 +11,9 @@
 #include <SPI.h>								                 // SPI bus for the RFM module
 #include <util/crc16.h>                          // Checksum for JeeLib compatibility
 
-enum rfband {RFM_433MHZ = 1, RFM_868MHZ, RFM_915MHZ }; // frequency band.
+#define RF69_433MHZ            43
+#define RF69_868MHZ            86
+#define RF69_915MHZ            91
 
 /*
  * "Public" functions for general use
